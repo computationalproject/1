@@ -34,5 +34,17 @@ ylabel("Omega M")
 contour(w0, Omm, Loglike, [max(max(Loglike)) - 5.9, max(max(Loglike)) - 3.1, max(max(Loglike)) - 1.15])
 print -dpng P2Q13
 
+likelihood2D = exp ( Loglike);
+likelihood1D = sum (likelihood2D, 2);
+Loglike1D = log(likelihood1D);
 
+chisq1D = -2 * Loglike1D;
+chisq1D = chisq1D - min(chisq1D);
+figure 34
+
+plot (Omm, chisq1D)
+print  -dpng ommgraph
+figure 35
+plot ( w0, chisq1D)
+print  -dpng  w0graph
 
